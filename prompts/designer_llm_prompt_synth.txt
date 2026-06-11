@@ -1,0 +1,14 @@
+You are tuning an abstract design system. The design is a vector of real-valued dimensions, each named (d00, d01, ...) and each constrained to the range [0.0, 1.0]. Each turn you receive a DIAGNOSTIC FEED with the current value of every dimension and a single QUALITY reading in [0,1]. The score you minimise is the distance of QUALITY from the target g*=0.60: score = max(0, |quality - 0.60| - 0.03), lower is better; it is 0 once quality sits inside the dead-zone [0.57, 0.63]. The current design sits ABOVE target (quality too high), so your job is to REDUCE quality toward g*=0.60 by changing dimension values.
+
+Not all dimensions matter. Some move quality a lot, some only a little and then stop helping, and some do nothing at all — you must discover which from how the score responds to your edits. You may set any dimension to any value in [0.0, 1.0]; setting a value is absolute (it replaces the current value, it is not a multiplier).
+
+You must reply with EXACTLY one JSON object inside a fenced ```json``` block, with no prose outside the fences, in this schema:
+{
+  "rationale": "<one short sentence>",
+  "intervention": {
+     "dim_set": {"<dim_name>": <float in [0.0, 1.0]>, ...}
+  },
+  "converged": <true|false>
+}
+
+Set values only for the dimensions you want to change this turn; omit the rest. Use ONLY the exact dimension names listed in the VALID DIMENSIONS block of the feed; any other name is ignored. Set converged=true ONLY if you believe further intervention will not improve the score.

@@ -1,0 +1,545 @@
+[
+  {
+    "name": "AggressiveBuilder",
+    "settings": {
+      "unspendable_cash": 0,
+      "ignore_property_groups": [],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 0,
+      "jail_pay_threshold": 0,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "CashHoarder",
+    "settings": {
+      "unspendable_cash": 1000,
+      "ignore_property_groups": [],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 1200,
+      "jail_pay_threshold": 1500,
+      "aggressive_build": false,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Trader",
+    "settings": {
+      "unspendable_cash": 300,
+      "ignore_property_groups": [],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 400,
+      "trade_max_diff_relative": 3.5,
+      "build_cash_floor": 400,
+      "jail_pay_threshold": 500,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "RailroadKing",
+    "settings": {
+      "unspendable_cash": 100,
+      "ignore_property_groups": [
+        "Brown",
+        "Green",
+        "Indigo",
+        "Lightblue",
+        "Orange",
+        "Pink",
+        "Red",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 100,
+      "jail_pay_threshold": 300,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "LowCostOnly",
+    "settings": {
+      "unspendable_cash": 200,
+      "ignore_property_groups": [
+        "Green",
+        "Indigo",
+        "Orange",
+        "Red",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 250,
+      "jail_pay_threshold": 200,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "HighCostOnly",
+    "settings": {
+      "unspendable_cash": 400,
+      "ignore_property_groups": [
+        "Brown",
+        "Lightblue",
+        "Pink"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 500,
+      "jail_pay_threshold": 400,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Balanced",
+    "settings": {
+      "unspendable_cash": 300,
+      "ignore_property_groups": [],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 250,
+      "trade_max_diff_relative": 2.5,
+      "build_cash_floor": 350,
+      "jail_pay_threshold": 250,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Passive",
+    "settings": {
+      "unspendable_cash": 500,
+      "ignore_property_groups": [],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 700,
+      "jail_pay_threshold": 1500,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Bully",
+    "settings": {
+      "unspendable_cash": 50,
+      "ignore_property_groups": [],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 500,
+      "trade_max_diff_relative": 5.0,
+      "build_cash_floor": 0,
+      "jail_pay_threshold": 100,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "RiskAverse",
+    "settings": {
+      "unspendable_cash": 800,
+      "ignore_property_groups": [
+        "Green",
+        "Indigo"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 2.0,
+      "build_cash_floor": 1000,
+      "jail_pay_threshold": 1200,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_00",
+    "settings": {
+      "unspendable_cash": 788,
+      "ignore_property_groups": [
+        "Orange",
+        "Pink",
+        "Red",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 20,
+      "trade_max_diff_relative": 2.04,
+      "build_cash_floor": 861,
+      "jail_pay_threshold": 1047,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_01",
+    "settings": {
+      "unspendable_cash": 1090,
+      "ignore_property_groups": [
+        "Lightblue"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 414,
+      "trade_max_diff_relative": 3.41,
+      "build_cash_floor": 1444,
+      "jail_pay_threshold": 300,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_02",
+    "settings": {
+      "unspendable_cash": 533,
+      "ignore_property_groups": [
+        "Green"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 412,
+      "trade_max_diff_relative": 4.67,
+      "build_cash_floor": 127,
+      "jail_pay_threshold": 28,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_03",
+    "settings": {
+      "unspendable_cash": 454,
+      "ignore_property_groups": [
+        "Lightblue"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 411,
+      "trade_max_diff_relative": 4.87,
+      "build_cash_floor": 488,
+      "jail_pay_threshold": 1112,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_04",
+    "settings": {
+      "unspendable_cash": 1235,
+      "ignore_property_groups": [
+        "Brown",
+        "Lightblue",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 300,
+      "trade_max_diff_relative": 2.15,
+      "build_cash_floor": 1120,
+      "jail_pay_threshold": 187,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_05",
+    "settings": {
+      "unspendable_cash": 79,
+      "ignore_property_groups": [
+        "Brown",
+        "Lightblue"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 459,
+      "trade_max_diff_relative": 3.8,
+      "build_cash_floor": 164,
+      "jail_pay_threshold": 1107,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_06",
+    "settings": {
+      "unspendable_cash": 1434,
+      "ignore_property_groups": [
+        "Green",
+        "Indigo",
+        "Lightblue",
+        "Pink"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 42,
+      "trade_max_diff_relative": 2.3,
+      "build_cash_floor": 731,
+      "jail_pay_threshold": 236,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_07",
+    "settings": {
+      "unspendable_cash": 1428,
+      "ignore_property_groups": [
+        "Green",
+        "Indigo"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 23,
+      "trade_max_diff_relative": 4.27,
+      "build_cash_floor": 448,
+      "jail_pay_threshold": 1298,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_08",
+    "settings": {
+      "unspendable_cash": 378,
+      "ignore_property_groups": [
+        "Brown",
+        "Indigo",
+        "Pink",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 63,
+      "trade_max_diff_relative": 2.92,
+      "build_cash_floor": 1470,
+      "jail_pay_threshold": 1489,
+      "aggressive_build": false,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_09",
+    "settings": {
+      "unspendable_cash": 206,
+      "ignore_property_groups": [
+        "Indigo",
+        "Lightblue",
+        "Red",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 200,
+      "trade_max_diff_relative": 1.8,
+      "build_cash_floor": 1432,
+      "jail_pay_threshold": 734,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_10",
+    "settings": {
+      "unspendable_cash": 905,
+      "ignore_property_groups": [
+        "Indigo",
+        "Red"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 89,
+      "trade_max_diff_relative": 1.05,
+      "build_cash_floor": 1363,
+      "jail_pay_threshold": 1395,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_11",
+    "settings": {
+      "unspendable_cash": 575,
+      "ignore_property_groups": [
+        "Green",
+        "Indigo"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 122,
+      "trade_max_diff_relative": 4.05,
+      "build_cash_floor": 276,
+      "jail_pay_threshold": 986,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_12",
+    "settings": {
+      "unspendable_cash": 684,
+      "ignore_property_groups": [
+        "Indigo",
+        "Red"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 122,
+      "trade_max_diff_relative": 1.89,
+      "build_cash_floor": 327,
+      "jail_pay_threshold": 917,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_13",
+    "settings": {
+      "unspendable_cash": 1080,
+      "ignore_property_groups": [
+        "Green",
+        "Orange"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 464,
+      "trade_max_diff_relative": 3.25,
+      "build_cash_floor": 997,
+      "jail_pay_threshold": 0,
+      "aggressive_build": true,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_14",
+    "settings": {
+      "unspendable_cash": 30,
+      "ignore_property_groups": [
+        "Indigo",
+        "Pink",
+        "Red"
+      ],
+      "is_willing_to_make_trades": true,
+      "trade_max_diff_absolute": 486,
+      "trade_max_diff_relative": 3.71,
+      "build_cash_floor": 822,
+      "jail_pay_threshold": 647,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_15",
+    "settings": {
+      "unspendable_cash": 974,
+      "ignore_property_groups": [
+        "Green",
+        "Indigo",
+        "Orange",
+        "Red"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 321,
+      "trade_max_diff_relative": 1.33,
+      "build_cash_floor": 812,
+      "jail_pay_threshold": 562,
+      "aggressive_build": false,
+      "buy_utilities": true,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_16",
+    "settings": {
+      "unspendable_cash": 531,
+      "ignore_property_groups": [
+        "Green"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 161,
+      "trade_max_diff_relative": 4.79,
+      "build_cash_floor": 1143,
+      "jail_pay_threshold": 1162,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_17",
+    "settings": {
+      "unspendable_cash": 18,
+      "ignore_property_groups": [
+        "Brown",
+        "Lightblue"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 77,
+      "trade_max_diff_relative": 2.09,
+      "build_cash_floor": 283,
+      "jail_pay_threshold": 691,
+      "aggressive_build": false,
+      "buy_utilities": true,
+      "buy_railroads": false
+    }
+  },
+  {
+    "name": "Sampled_18",
+    "settings": {
+      "unspendable_cash": 490,
+      "ignore_property_groups": [
+        "Brown",
+        "Green",
+        "Indigo"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 157,
+      "trade_max_diff_relative": 1.72,
+      "build_cash_floor": 98,
+      "jail_pay_threshold": 1071,
+      "aggressive_build": true,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  },
+  {
+    "name": "Sampled_19",
+    "settings": {
+      "unspendable_cash": 1019,
+      "ignore_property_groups": [
+        "Green",
+        "Orange",
+        "Pink",
+        "Yellow"
+      ],
+      "is_willing_to_make_trades": false,
+      "trade_max_diff_absolute": 19,
+      "trade_max_diff_relative": 2.21,
+      "build_cash_floor": 873,
+      "jail_pay_threshold": 1407,
+      "aggressive_build": false,
+      "buy_utilities": false,
+      "buy_railroads": true
+    }
+  }
+]

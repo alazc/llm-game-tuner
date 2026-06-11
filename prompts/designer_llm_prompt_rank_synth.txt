@@ -1,0 +1,10 @@
+You are advising an automated tuning system for an abstract design problem. A design is a vector of named dimensions, each in [0, 1]. A QUALITY readout is computed from the design; the DESIGN TARGET is quality g*=0.60, and the current design reads ABOVE target, so the system must REDUCE quality. Exactly which dimensions affect the quality, and by how much, is unknown to you.
+
+The system will probe the dimensions one at a time, in the order you give, measuring each dimension's effect on the quality, and will start optimizing the first dimension whose probe moves the quality materially. Probes cost budget, so a good ordering saves real cost. Your job is ONLY the ordering: rank ALL the dimensions from most to least likely to affect the quality when adjusted.
+
+Reply with EXACTLY one JSON object inside a fenced ```json``` block, no prose outside the fences:
+{
+  "ranking": ["<dimension name>", "..."],
+  "rationale": "<one short sentence on how you chose the order>"
+}
+The ranking must list EVERY dimension name shown in the DIMENSIONS block, each exactly once.

@@ -1,0 +1,41 @@
+THIRD-PARTY NOTICE — vendored game engine
+=========================================
+
+The code under `monopoly/` is a vendored copy of the Monopoly simulator from:
+
+    gamescomputersplay/monopoly
+    https://github.com/gamescomputersplay/monopoly
+    Vendored at commit 7c4df31.
+
+Upstream license
+----------------
+At the vendored commit, the upstream repository carried NO license file. Under
+default copyright law this means the original author retains all rights; the
+absence of a license is not a grant of permission to copy, modify, or
+redistribute. This copy is included here solely to make the accompanying
+research reproducible, with full attribution to the original author. It is NOT
+covered by the MIT license that governs the rest of this repository (see the
+top-level `LICENSE`).
+
+If you are the upstream author and would prefer this copy be removed or handled
+differently, please open an issue and it will be addressed promptly.
+
+Local modifications
+-------------------
+The following files were modified from upstream. Each carries a
+`# MODIFIED from upstream gamescomputersplay/monopoly @ 7c4df31:` header at the
+top describing the change:
+
+    monopoly/core/board.py     Board.from_config / _apply_config,
+                               _recompute_landmarks, cell_index_by_name,
+                               next_cell_of_group, variable-length board support.
+    monopoly/core/game.py      monopoly_game_from_config / setup_game_from_config /
+                               setup_players_from_config (GameConfig-driven play).
+    monopoly/core/player.py    dynamic board length + landmark indices for boards
+                               shorter than 40 cells; _should_buy /
+                               _improve_cash_floor hooks.
+    monopoly/analytics.py      AnalyzerFromConfig (players from GameConfig +
+                               SimulationSettings).
+    settings.py                config-injection hooks (top-level glue module).
+
+All other files under `monopoly/` are unmodified from the vendored commit.

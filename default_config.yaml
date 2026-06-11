@@ -1,0 +1,426 @@
+mechanics:
+  available_houses: 36
+  available_hotels: 12
+  salary: 200
+  luxury_tax: 100
+  income_tax: 200
+  income_tax_percentage: 0.1
+  mortgage_value: 0.5
+  mortgage_fee: 0.1
+  exit_jail_fine: 50
+  free_parking_money: false
+  dice_count: 2
+  dice_sides: 6
+players:
+- name: Hero
+  settings: HeroPlayerSettings
+  starting_money: 1500
+- name: Alice
+  settings: StandardPlayerSettings
+  starting_money: 1500
+- name: Bob
+  settings: StandardPlayerSettings
+  starting_money: 1500
+- name: Charly
+  settings: StandardPlayerSettings
+  starting_money: 1500
+cells:
+- type: Cell
+  name: GO
+- type: Property
+  name: A1 Mediterranean Avenue
+  cost_base: 60
+  rent_base: 2
+  cost_house: 50
+  rent_house:
+  - 10
+  - 30
+  - 90
+  - 160
+  - 250
+  group: Brown
+- type: CommunityChest
+  name: COM1 Community Chest
+- type: Property
+  name: A2 Baltic Avenue
+  cost_base: 60
+  rent_base: 4
+  cost_house: 50
+  rent_house:
+  - 20
+  - 60
+  - 180
+  - 320
+  - 450
+  group: Brown
+- type: IncomeTax
+  name: IT Income Tax
+- type: Property
+  name: R1 Reading Railroad
+  cost_base: 200
+  rent_base: 25
+  cost_house: 0
+  rent_house:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  group: Railroads
+- type: Property
+  name: B1 Oriental Avenue
+  cost_base: 100
+  rent_base: 6
+  cost_house: 50
+  rent_house:
+  - 30
+  - 90
+  - 270
+  - 400
+  - 550
+  group: Lightblue
+- type: Chance
+  name: CH1 Chance
+- type: Property
+  name: B2 Vermont Avenue
+  cost_base: 100
+  rent_base: 6
+  cost_house: 50
+  rent_house:
+  - 30
+  - 90
+  - 270
+  - 400
+  - 550
+  group: Lightblue
+- type: Property
+  name: B3 Connecticut Avenue
+  cost_base: 120
+  rent_base: 8
+  cost_house: 50
+  rent_house:
+  - 40
+  - 100
+  - 300
+  - 450
+  - 600
+  group: Lightblue
+- type: Cell
+  name: JL Jail
+- type: Property
+  name: C1 St. Charles Place
+  cost_base: 140
+  rent_base: 10
+  cost_house: 100
+  rent_house:
+  - 50
+  - 150
+  - 450
+  - 625
+  - 750
+  group: Pink
+- type: Property
+  name: U1 Electric Company
+  cost_base: 150
+  rent_base: 0
+  cost_house: 0
+  rent_house:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  group: Utilities
+- type: Property
+  name: C2 States Avenue
+  cost_base: 140
+  rent_base: 10
+  cost_house: 100
+  rent_house:
+  - 50
+  - 150
+  - 450
+  - 625
+  - 750
+  group: Pink
+- type: Property
+  name: C3 Virginia Avenue
+  cost_base: 160
+  rent_base: 12
+  cost_house: 100
+  rent_house:
+  - 60
+  - 180
+  - 500
+  - 700
+  - 900
+  group: Pink
+- type: Property
+  name: R2 Pennsylvania Railroad
+  cost_base: 200
+  rent_base: 25
+  cost_house: 0
+  rent_house:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  group: Railroads
+- type: Property
+  name: D1 St. James Place
+  cost_base: 180
+  rent_base: 14
+  cost_house: 100
+  rent_house:
+  - 70
+  - 200
+  - 550
+  - 700
+  - 950
+  group: Orange
+- type: CommunityChest
+  name: COM2 Community Chest
+- type: Property
+  name: D2 Tennessee Avenue
+  cost_base: 180
+  rent_base: 14
+  cost_house: 100
+  rent_house:
+  - 70
+  - 200
+  - 550
+  - 700
+  - 950
+  group: Orange
+- type: Property
+  name: D3 New York Avenue
+  cost_base: 200
+  rent_base: 16
+  cost_house: 100
+  rent_house:
+  - 80
+  - 220
+  - 600
+  - 800
+  - 1000
+  group: Orange
+- type: FreeParking
+  name: FP Free Parking
+- type: Property
+  name: E1 Kentucky Avenue
+  cost_base: 220
+  rent_base: 18
+  cost_house: 150
+  rent_house:
+  - 90
+  - 250
+  - 700
+  - 875
+  - 1050
+  group: Red
+- type: Chance
+  name: CH2 Chance
+- type: Property
+  name: E2 Indiana Avenue
+  cost_base: 220
+  rent_base: 18
+  cost_house: 150
+  rent_house:
+  - 90
+  - 250
+  - 700
+  - 875
+  - 1050
+  group: Red
+- type: Property
+  name: E3 Illinois Avenue
+  cost_base: 240
+  rent_base: 20
+  cost_house: 150
+  rent_house:
+  - 100
+  - 300
+  - 750
+  - 925
+  - 1100
+  group: Red
+- type: Property
+  name: R3 B&O Railroad
+  cost_base: 200
+  rent_base: 25
+  cost_house: 0
+  rent_house:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  group: Railroads
+- type: Property
+  name: F1 Atlantic Avenue
+  cost_base: 260
+  rent_base: 22
+  cost_house: 150
+  rent_house:
+  - 110
+  - 330
+  - 800
+  - 975
+  - 1150
+  group: Yellow
+- type: Property
+  name: F2 Ventnor Avenue
+  cost_base: 260
+  rent_base: 22
+  cost_house: 150
+  rent_house:
+  - 110
+  - 330
+  - 800
+  - 975
+  - 1150
+  group: Yellow
+- type: Property
+  name: U2 Waterworks
+  cost_base: 150
+  rent_base: 0
+  cost_house: 0
+  rent_house:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  group: Utilities
+- type: Property
+  name: F3 Marvin Gardens
+  cost_base: 280
+  rent_base: 24
+  cost_house: 150
+  rent_house:
+  - 120
+  - 360
+  - 850
+  - 1025
+  - 1200
+  group: Yellow
+- type: GoToJail
+  name: GTJ Go To Jail
+- type: Property
+  name: G1 Pacific Avenue
+  cost_base: 300
+  rent_base: 26
+  cost_house: 200
+  rent_house:
+  - 130
+  - 390
+  - 900
+  - 1100
+  - 1275
+  group: Green
+- type: Property
+  name: G2 North Carolina Avenue
+  cost_base: 300
+  rent_base: 26
+  cost_house: 200
+  rent_house:
+  - 130
+  - 390
+  - 900
+  - 1100
+  - 1275
+  group: Green
+- type: CommunityChest
+  name: COM3 Community Chest
+- type: Property
+  name: G3 Pennsylvania Avenue
+  cost_base: 320
+  rent_base: 28
+  cost_house: 200
+  rent_house:
+  - 150
+  - 450
+  - 1000
+  - 1200
+  - 1400
+  group: Green
+- type: Property
+  name: R4 Short Line
+  cost_base: 200
+  rent_base: 25
+  cost_house: 0
+  rent_house:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  group: Railroads
+- type: Chance
+  name: CH3 Chance
+- type: Property
+  name: H1 Park Place
+  cost_base: 350
+  rent_base: 35
+  cost_house: 200
+  rent_house:
+  - 175
+  - 500
+  - 1100
+  - 1300
+  - 1500
+  group: Indigo
+- type: LuxuryTax
+  name: LT Luxury Tax
+- type: Property
+  name: H2 Boardwalk
+  cost_base: 400
+  rent_base: 50
+  cost_house: 200
+  rent_house:
+  - 200
+  - 600
+  - 1400
+  - 1700
+  - 2000
+  group: Indigo
+chance_cards:
+- Advance to Boardwalk
+- Advance to Go (Collect $200)
+- Advance to Illinois Avenue. If you pass Go, collect $200
+- Advance to St. Charles Place. If you pass Go, collect $200
+- Advance to the nearest Railroad. If owned, pay owner twice the rental to which they
+  are otherwise entitled
+- Advance to the nearest Railroad. If owned, pay owner twice the rental to which they
+  are otherwise entitled
+- Advance token to nearest Utility. If owned, throw dice and pay owner a total ten
+  times amount thrown.
+- Bank pays you dividend of $50
+- Get Out of Jail Free
+- Go Back 3 Spaces
+- Go to Jail. Go directly to Jail, do not pass Go, do not collect $200
+- Make general repairs on all your property. For each house pay $25. For each hotel
+  pay $100
+- Speeding fine $15
+- Take a trip to Reading Railroad. If you pass Go, collect $200
+- You have been elected Chairman of the Board. Pay each player $50
+- Your building loan matures. Collect $150
+chest_cards:
+- Advance to Go (Collect $200)
+- Bank error in your favor. Collect $200
+- Doctor's fee. Pay $50
+- From sale of stock you get $50
+- Get Out of Jail Free
+- Go to Jail. Go directly to jail, do not pass Go, do not collect $200
+- Holiday fund matures. Receive $100
+- Income tax refund. Collect $20
+- It is your birthday. Collect $10 from every player
+- Life insurance matures. Collect $100
+- Pay hospital fees of $100
+- Pay school fees of $50
+- Receive $25 consultancy fee
+- You are assessed for street repair. $40 per house. $115 per hotel
+- You have won second prize in a beauty contest. Collect $10
+- You inherit $100
+optimization_spec: {}

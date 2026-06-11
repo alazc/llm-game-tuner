@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Run artifacts (recreated at runtime)
+results/
+logs/
+report/
+_exp0_dl/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

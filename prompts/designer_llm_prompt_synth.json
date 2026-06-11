@@ -1,0 +1,13 @@
+{
+  "name": "designer_llm_prompt_synth",
+  "description": "EXP-005 SYNTHETIC-DESIGNER GOAL-OPEN: tune a real-valued design vector in [0,1]^d to drive a displayed QUALITY scalar into the band around g*=0.60 (score = max(0,|quality-0.60|-0.03), lower better). Prior-free analog of the Monopoly designer_llm_prompt_open; quality starts above target -> REDUCE. Edit vocabulary: absolute dim_set on named dimensions.",
+  "goal_disclosure": "open",
+  "format": "fenced ```json``` block with one object: {rationale, intervention:{dim_set}, converged}",
+  "model_default": "Qwen/Qwen2.5-7B-Instruct",
+  "generation_locked": {
+    "max_new_tokens": 320,
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "sha256": "9aea1a7837dc52535fd47d484aae890b1cbabd53bd3d565dd2ac03c032e873b7"
+}

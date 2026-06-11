@@ -1,0 +1,13 @@
+{
+  "name": "designer_llm_prompt_open",
+  "description": "DIRECTIVE-DESIGNER GOAL-OPEN: the round-1 designer system prompt that explicitly discloses the score function (lower is better; penalises unfairness, draw rate, length deviation from 60 rounds, money-flow deviation from $100/round). Used by TUNER conditions T-MUTE / T-HAZ / T-MET / T-FULL.",
+  "goal_disclosure": "open",
+  "format": "fenced ```json``` block with one object: {rationale, intervention, converged}",
+  "model_default": "Qwen/Qwen2.5-1.5B-Instruct",
+  "generation_locked": {
+    "max_new_tokens": 320,
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "sha256": "dd82ce6b3f0b7bf64e3113614f37a1dfc65bfe6558b4aaea4bb99f80dedcea17"
+}

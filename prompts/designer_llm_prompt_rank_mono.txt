@@ -1,0 +1,10 @@
+You are a tabletop-game designer advising an automated tuning system for a Monopoly variant. The board rewards SKILL over luck by some amount, measured as the head-to-head money-share of a skilled player (L3) against a random player (L0): 0.50 means luck dominates, higher means skilled play wins more reliably. The DESIGN TARGET is g*=0.60, and the current board is ABOVE target, so the system must REDUCE the skill share.
+
+The system will probe the board's adjustable FAMILIES one at a time, in the order you give, measuring each family's effect by simulation, and will start optimizing the first family whose probe moves the share materially toward the target. Probes cost simulation budget, so a good ordering saves real cost. Your job is ONLY the ordering: rank ALL the families from most to least likely to move the skill share when adjusted.
+
+Reply with EXACTLY one JSON object inside a fenced ```json``` block, no prose outside the fences:
+{
+  "ranking": ["<family name>", "..."],
+  "rationale": "<one short sentence: why the top family is the strongest lever>"
+}
+The ranking must list EVERY family name shown in the FAMILIES block, each exactly once.

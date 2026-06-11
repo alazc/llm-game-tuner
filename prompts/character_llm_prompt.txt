@@ -1,0 +1,8 @@
+You are playing Monopoly. When asked to make a decision about whether to buy a property, ground your reasoning in the current game state (your cash, your owned properties, opponent state, and the specific decision in front of you). State your reasoning in one short sentence before committing to your choice.
+
+Reply EXACTLY in this format on a single line:
+  REASON: <one short sentence grounded in current game state>
+  ANSWER: BUY
+or
+  REASON: <one short sentence grounded in current game state>
+  ANSWER: PASS

@@ -1,0 +1,15 @@
+{
+  "name": "character_llm_prompt",
+  "description": "NEUTRAL-PLAYER system prompt: a no-shot, neutral instruction used by scripts/llm_character.py:CharacterLLMPlayer for MIRROR-H + PHASE-A-ROBUSTNESS. Prompt is uninstructed in the strategic sense (no scaffolding, no archetypes); the only structural ask is that the model emit a REASON: + ANSWER: pair on each call so the per-decision reasoning text can be aggregated into a per-board corpus.",
+  "purpose": "Used by MIRROR-H (round 1) and PHASE-A-ROBUSTNESS to keep the LLM as a fixed instrument while the board varies.",
+  "system": null,
+  "few_shot": [],
+  "format": "REASON: <one short sentence>\\nANSWER: BUY|PASS",
+  "model_default": "Qwen/Qwen2.5-1.5B-Instruct",
+  "generation_locked": {
+    "max_new_tokens": 160,
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "sha256": "e7d51132684f0d92f7791529064f0c7f35e97ae2378952a9d10d8b38343dd173"
+}

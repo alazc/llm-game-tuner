@@ -1,0 +1,89 @@
+{
+  "name": "LLMPlayer buy-decision prompt",
+  "purpose": "Single-turn prompt used by agents.LLMPlayer to ask the LLM whether to buy an unowned property the player has just landed on. Build, trade, and jail decisions are not asked of the LLM (they fall through to base Player logic) to keep latency manageable.",
+  "model_default": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_alternatives_tested": [
+    "Qwen/Qwen2.5-0.5B-Instruct (saturated to BUY 100% of the time even with rich prompt; insufficient capacity)",
+    "Qwen/Qwen2.5-1.5B-Instruct (current default; differentiates correctly on cash level + opponent ownership + monopoly-completion scenarios)"
+  ],
+
+  "generation_settings": {
+    "max_new_tokens": 64,
+    "do_sample": false,
+    "temperature": null,
+    "stop_token_ids": ["<|im_end|>", "<|endoftext|>"],
+    "comment": "Greedy decoding to keep decisions reproducible across runs. Stop tokens included so the model halts after its answer rather than hallucinating a continuation; the parser also locks onto the FIRST occurrence of 'ANSWER: BUY' or 'ANSWER: PASS' as a second line of defence."
+  },
+
+  "context_passed_to_llm": [
+    "own cash (in dollars)",
+    "property name (e.g. 'H2 Boardwalk')",
+    "property colour group (e.g. 'Indigo')",
+    "property cost (purchase price)",
+    "property base rent (un-developed)",
+    "total properties owned by self",
+    "properties owned by self in this colour group",
+    "size of this colour group on the board (so 2-property vs 3-property groups are distinguishable)",
+    "properties owned by the opponent in this colour group",
+    "total properties owned by the opponent"
+  ],
+
+  "context_NOT_passed_to_llm": [
+    "build levels (houses / hotels) on any property",
+    "mortgage state of any property",
+    "cash held by opponents",
+    "current board position of the player",
+    "which other unowned properties exist on the board",
+    "game history / turn number / round number"
+  ],
+
+  "system_prompt": "You are a strategic Monopoly player who decides whether to buy properties. Your goal is to win by bankrupting opponents through rent. You must NOT mindlessly buy every property: passing is correct when (a) cash is dangerously low, (b) the property is in a group an opponent already dominates and you have no path to monopoly, or (c) the rent return is poor relative to the cost. Equally, buying is correct when the property advances a group you already own most of, or when it denies the group to an opponent who would otherwise complete it.\n\nReply in EXACTLY this format on a single line:\n  REASON: <one short sentence>\n  ANSWER: BUY\nor\n  REASON: <one short sentence>\n  ANSWER: PASS\nDo not output anything else.",
+
+  "few_shot_examples": [
+    {
+      "rationale": "Clear BUY: cheap, no opposition, plenty of cash.",
+      "user": "Cash $1200. Decision: buy 'B1 Oriental Avenue' (group Lightblue) for $100, base rent $6. You own 0 properties total, 0 in this group. Opponent owns 0 in this group, 2 properties total.",
+      "assistant": "REASON: Cheap, plenty of cash, and no opponent ownership in this group leaves room for me to monopolise it.\nANSWER: BUY"
+    },
+    {
+      "rationale": "Clear PASS: low cash AND opponent already holds the group. Uses Orange (not the Indigo / Boardwalk used in our diagnostic tests) to avoid name leakage between the few-shot exemplar and the test queries.",
+      "user": "Cash $90. Decision: buy 'D1 St. James Place' (group Orange) for $180, base rent $14. You own 3 properties total, 0 in this group. Opponent owns 1 in this group, 5 properties total.",
+      "assistant": "REASON: Cash is too low to afford this and the opponent already holds Orange, so this group is unlikely to become my monopoly.\nANSWER: PASS"
+    },
+    {
+      "rationale": "Clear BUY: completing the player's own monopoly.",
+      "user": "Cash $700. Decision: buy 'C2 States Avenue' (group Pink) for $140, base rent $10. You own 6 properties total, 2 in this group. Opponent owns 0 in this group, 4 properties total.",
+      "assistant": "REASON: Buying this completes my Pink monopoly, which is the single highest-value move available.\nANSWER: BUY"
+    },
+    {
+      "rationale": "Clear PASS: opponent dominates the group and the buy would meaningfully hurt liquidity.",
+      "user": "Cash $500. Decision: buy 'G1 Pacific Avenue' (group Green) for $300, base rent $26. You own 8 properties total, 0 in this group. Opponent owns 2 in this group, 5 properties total.",
+      "assistant": "REASON: Opponent already owns two-thirds of Green so I cannot monopolise it; spending $300 here hurts my liquidity.\nANSWER: PASS"
+    }
+  ],
+
+  "runtime_user_prompt_template": "Cash ${self.money}. Decision: buy '{prop.name}' (group {prop.group}) for ${prop.cost_base}, base rent ${prop.rent_base}. You own {owned_count} properties total, {same_group_self} in this group of {group_size}. Opponent owns {opp_in_group} in this group, {opp_total} properties total.",
+
+  "runtime_user_prompt_example": "Cash $850. Decision: buy 'C1 Pink Lane' (group Pink) for $140, base rent $10. You own 4 properties total, 0 in this group of 2. Opponent owns 1 in this group, 3 properties total.",
+
+  "decision_parsing": {
+    "rule": "Find the FIRST occurrence of 'ANSWER: BUY' or 'ANSWER: PASS' (case-insensitive) in the generated text; whichever appears first is the decision. If neither appears, fall back to the last-token heuristic (last 'BUY' vs last 'PASS' anywhere in the text). If still nothing, default to BUY (matches the optimistic baseline RuleBasedPlayer behaviour).",
+    "rationale": "Small models often hallucinate a fake new user turn after their answer. That hallucinated text frequently contains the words 'buy' or 'pass' unrelated to the actual decision. Locking onto the FIRST 'ANSWER: ...' clause prevents the parser from being misled by post-answer garbage."
+  },
+
+  "pre_filter_before_llm_call": [
+    "if property_to_buy.cost_base > self.money: return False (can't afford)",
+    "if self.money - property_to_buy.cost_base < self.settings.unspendable_cash: return False (would dip below cash floor)",
+    "if property_to_buy.group in self.settings.ignore_property_groups: return False (player has chosen to ignore this group)"
+  ],
+  "pre_filter_rationale": "These three checks short-circuit the LLM call when buying is trivially impossible or excluded by player policy. This drops LLM calls per game by ~60-80% and keeps Phase A wall-clock manageable. The pre-filter does NOT decide BUY; only PASS is shortcut-able. Anything that survives the pre-filter is sent to the LLM.",
+
+  "code_pointers": {
+    "system_prompt":          "agents.py LLMPlayer._SYSTEM_PROMPT",
+    "few_shot_examples":      "agents.py LLMPlayer._FEW_SHOT",
+    "user_prompt_template":   "agents.py LLMPlayer._build_buy_prompt",
+    "local_query":            "agents.py LLMPlayer._query_local",
+    "openai_query":           "agents.py LLMPlayer._query_openai",
+    "decision_parser":        "agents.py LLMPlayer._parse_decision"
+  }
+}

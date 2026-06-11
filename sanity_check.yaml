@@ -1,0 +1,92 @@
+mechanics:
+  available_houses: 36
+  available_hotels: 12
+  salary: 200
+  luxury_tax: 100
+  income_tax: 200
+  income_tax_percentage: 0.1
+  mortgage_value: 0.5
+  mortgage_fee: 0.1
+  exit_jail_fine: 50
+  free_parking_money: false
+  dice_count: 2
+  dice_sides: 6
+
+players:
+  - name: Hero
+    settings: HeroPlayerSettings
+    starting_money: 1500
+  - name: Alice
+    settings: StandardPlayerSettings
+    starting_money: 1500
+
+cells:
+  - {type: Cell, name: GO}
+  - {type: Property, name: A1 Mediterranean Avenue, cost_base: 60, rent_base: 2, cost_house: 50, rent_house: [10, 30, 90, 160, 250], group: Brown}
+  - {type: CommunityChest, name: COM1 Community Chest}
+  - {type: Property, name: A2 Baltic Avenue, cost_base: 60, rent_base: 4, cost_house: 50, rent_house: [20, 60, 180, 320, 450], group: Brown}
+  - {type: IncomeTax, name: IT Income Tax}
+  - {type: Cell, name: R1 Reading Railroad}
+  - {type: Cell, name: B1 Oriental Avenue}
+  - {type: Chance, name: CH1 Chance}
+  - {type: Cell, name: B2 Vermont Avenue}
+  - {type: Cell, name: B3 Connecticut Avenue}
+  - {type: Cell, name: JL Jail}
+  - {type: Cell, name: C1 St. Charles Place}
+  - {type: Cell, name: U1 Electric Company}
+  - {type: Cell, name: C2 States Avenue}
+  - {type: Cell, name: C3 Virginia Avenue}
+  - {type: Cell, name: R2 Pennsylvania Railroad}
+  - {type: Cell, name: D1 St. James Place}
+  - {type: CommunityChest, name: COM2 Community Chest}
+  - {type: Cell, name: D2 Tennessee Avenue}
+  - {type: Cell, name: D3 New York Avenue}
+  - {type: FreeParking, name: FP Free Parking}
+  - {type: Cell, name: E1 Kentucky Avenue}
+  - {type: Chance, name: CH2 Chance}
+  - {type: Cell, name: E2 Indiana Avenue}
+  - {type: Cell, name: E3 Illinois Avenue}
+  - {type: Cell, name: R3 B&O Railroad}
+  - {type: Cell, name: F1 Atlantic Avenue}
+  - {type: Cell, name: F2 Ventnor Avenue}
+  - {type: Cell, name: U2 Waterworks}
+  - {type: Cell, name: F3 Marvin Gardens}
+  - {type: GoToJail, name: GTJ Go To Jail}
+  - {type: Cell, name: G1 Pacific Avenue}
+  - {type: Cell, name: G2 North Carolina Avenue}
+  - {type: CommunityChest, name: COM3 Community Chest}
+  - {type: Cell, name: G3 Pennsylvania Avenue}
+  - {type: Cell, name: R4 Short Line}
+  - {type: Chance, name: CH3 Chance}
+  - {type: Property, name: H1 Park Place, cost_base: 350, rent_base: 35, cost_house: 200, rent_house: [175, 500, 1100, 1300, 1500], group: Indigo}
+  - {type: LuxuryTax, name: LT Luxury Tax}
+  - {type: Property, name: H2 Boardwalk, cost_base: 400, rent_base: 50, cost_house: 200, rent_house: [200, 600, 1400, 1700, 2000], group: Indigo}
+
+# Cards that don't reference specific board positions (safe for reduced board)
+chance_cards:
+  - Bank pays you dividend of $50
+  - Get Out of Jail Free
+  - Go to Jail. Go directly to Jail, do not pass Go, do not collect $200
+  - Make general repairs on all your property. For each house pay $25. For each hotel pay $100
+  - Speeding fine $15
+  - You have been elected Chairman of the Board. Pay each player $50
+  - Your building loan matures. Collect $150
+
+chest_cards:
+  - Bank error in your favor. Collect $200
+  - Doctor's fee. Pay $50
+  - From sale of stock you get $50
+  - Get Out of Jail Free
+  - Go to Jail. Go directly to jail, do not pass Go, do not collect $200
+  - Holiday fund matures. Receive $100
+  - Income tax refund. Collect $20
+  - It is your birthday. Collect $10 from every player
+  - Life insurance matures. Collect $100
+  - Pay hospital fees of $100
+  - Pay school fees of $50
+  - Receive $25 consultancy fee
+  - You are assessed for street repair. $40 per house. $115 per hotel
+  - You have won second prize in a beauty contest. Collect $10
+  - You inherit $100
+
+optimization_spec: {}

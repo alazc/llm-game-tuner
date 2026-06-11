@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-game-design"
+version = "0.1.0"
+description = "LLM-as-designer for game tuning: skill-expression objective over a Monopoly simulator."
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pyyaml",
+    "pandas",
+    "tqdm",
+]
+
+[tool.setuptools]
+# Flat top-level modules (the engine patches import these by bare name, e.g.
+# `from config import _fresh_cell`). Declared explicitly so an editable
+# install puts them on sys.path without a PYTHONPATH hack.
+py-modules = ["config", "settings", "agents", "player_settings", "ladder_agents"]
+
+[tool.setuptools.packages.find]
+include = ["monopoly*", "optimizer*", "prompts*", "scripts*", "experiments*", "synthetic*"]

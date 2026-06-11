@@ -1,0 +1,146 @@
+mechanics:
+  available_houses: 16
+  available_hotels: 4
+  salary: 200
+  luxury_tax: 100
+  income_tax: 200
+  income_tax_percentage: 0.1
+  mortgage_value: 0.5
+  mortgage_fee: 0.1
+  exit_jail_fine: 50
+  free_parking_money: false
+  dice_count: 2
+  dice_sides: 6
+players: []
+cells:
+- type: Cell
+  name: GO
+- type: Property
+  name: A1 Brown Lane
+  cost_base: 60
+  rent_base: 4
+  cost_house: 50
+  rent_house:
+  - 20
+  - 60
+  - 180
+  - 320
+  - 450
+  group: Brown
+- type: CommunityChest
+  name: COM1 Community Chest
+- type: Property
+  name: A2 Brown Avenue
+  cost_base: 60
+  rent_base: 4
+  cost_house: 50
+  rent_house:
+  - 20
+  - 60
+  - 180
+  - 320
+  - 450
+  group: Brown
+- type: Cell
+  name: JL Jail
+- type: Property
+  name: B1 Lightblue Street
+  cost_base: 100
+  rent_base: 6
+  cost_house: 50
+  rent_house:
+  - 30
+  - 90
+  - 270
+  - 400
+  - 550
+  group: Lightblue
+- type: Chance
+  name: CH1 Chance
+- type: Property
+  name: B2 Lightblue Avenue
+  cost_base: 100
+  rent_base: 6
+  cost_house: 50
+  rent_house:
+  - 30
+  - 90
+  - 270
+  - 400
+  - 550
+  group: Lightblue
+- type: FreeParking
+  name: FP Free Parking
+- type: Property
+  name: C1 Pink Lane
+  cost_base: 140
+  rent_base: 10
+  cost_house: 100
+  rent_house:
+  - 50
+  - 150
+  - 450
+  - 625
+  - 750
+  group: Pink
+- type: CommunityChest
+  name: COM2 Community Chest
+- type: Property
+  name: C2 Pink Avenue
+  cost_base: 140
+  rent_base: 10
+  cost_house: 100
+  rent_house:
+  - 50
+  - 150
+  - 450
+  - 625
+  - 750
+  group: Pink
+- type: GoToJail
+  name: GTJ Go To Jail
+- type: Property
+  name: D1 Orange Lane
+  cost_base: 180
+  rent_base: 14
+  cost_house: 100
+  rent_house:
+  - 70
+  - 200
+  - 550
+  - 700
+  - 950
+  group: Orange
+- type: Chance
+  name: CH2 Chance
+- type: Property
+  name: D2 Orange Avenue
+  cost_base: 180
+  rent_base: 14
+  cost_house: 100
+  rent_house:
+  - 70
+  - 200
+  - 550
+  - 700
+  - 950
+  group: Orange
+chance_cards:
+- Advance to Go (Collect $200)
+- Bank pays you dividend of $50
+- Get Out of Jail Free
+- Go Back 3 Spaces
+- Go to Jail. Go directly to Jail, do not pass Go, do not collect $200
+- Speeding fine $15
+- Your building loan matures. Collect $150
+- You have been elected Chairman of the Board. Pay each player $50
+chest_cards:
+- Advance to Go (Collect $200)
+- Bank error in your favor. Collect $200
+- Doctor's fee. Pay $50
+- Get Out of Jail Free
+- Go to Jail. Go directly to jail, do not pass Go, do not collect $200
+- Holiday fund matures. Receive $100
+- Income tax refund. Collect $20
+- It is your birthday. Collect $10 from every player
+optimization_spec: {}

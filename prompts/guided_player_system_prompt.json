@@ -1,0 +1,12 @@
+{
+  "name": "guided_player_system_prompt",
+  "description": "GUIDED-PLAYER system prompt: the 4-shot directive prompt used by agents.LLMPlayer for the original Phase A run (already completed). Few-shot examples remain in agents.py:LLMPlayer._FEW_SHOT (see prompts/llm_player_prompts.{txt,json} for the full transcript and per-shot rationale). This sidecar locks the system-prompt text portion only.",
+  "format": "REASON: <one short sentence>\\nANSWER: BUY|PASS",
+  "model_default": "Qwen/Qwen2.5-1.5B-Instruct",
+  "generation_locked": {
+    "max_new_tokens": 64,
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "sha256": "3ec10aacd1e59e9f917cf632a6fc6a701da13fcabeefd78bdca5eca35f55ed6c"
+}

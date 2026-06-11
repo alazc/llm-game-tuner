@@ -1,0 +1,14 @@
+{
+  "name": "designer_llm_prompt_closed",
+  "description": "DIRECTIVE-DESIGNER GOAL-CLOSED: the round-1 designer system prompt MINUS the score-function disclosure parenthetical. Used by TUNER condition T-BLIND only. The goal-closed ablation answers: 'did the LLM induce the design objective on its own, or did the open prompt do that work?' Identical to designer_llm_prompt_open.txt apart from the dropped sentence.",
+  "goal_disclosure": "closed",
+  "diff_from_open": "drops the parenthetical '(lower is better; the score penalises unfairness, draw rate, length deviation from 60 rounds, and money-flow deviation from $100/round)' from the score-target sentence",
+  "format": "fenced ```json``` block with one object: {rationale, intervention, converged}",
+  "model_default": "Qwen/Qwen2.5-1.5B-Instruct",
+  "generation_locked": {
+    "max_new_tokens": 320,
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "sha256": "3f41600965a77d61cee96cb9aee76b37b7f223b73f3bdbe199ea6b2100c99714"
+}

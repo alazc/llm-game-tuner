@@ -1,0 +1,170 @@
+================================================================
+LLMPlayer buy-decision prompt — full transcript
+================================================================
+
+This file shows the exact prompt fed to the LLM in `agents.LLMPlayer`,
+laid out in the same conversation format the chat template produces.
+Default model: Qwen/Qwen2.5-1.5B-Instruct.
+Generation: greedy (do_sample=False), max_new_tokens=64, with
+<|im_end|> and <|endoftext|> as additional EOS tokens.
+
+The conversation is six messages:
+  - 1 system message
+  - 4 few-shot user/assistant exchanges
+  - 1 runtime user message describing the actual decision
+
+The model produces an assistant response that the parser scans for
+'ANSWER: BUY' or 'ANSWER: PASS' (first occurrence wins).
+
+Build, trade, and jail decisions are NOT routed through the LLM —
+those keep the base Player logic to keep latency manageable.
+
+----------------------------------------------------------------
+[ system ]
+----------------------------------------------------------------
+You are a strategic Monopoly player who decides whether to buy
+properties. Your goal is to win by bankrupting opponents through
+rent. You must NOT mindlessly buy every property: passing is correct
+when (a) cash is dangerously low, (b) the property is in a group an
+opponent already dominates and you have no path to monopoly, or (c)
+the rent return is poor relative to the cost. Equally, buying is
+correct when the property advances a group you already own most of,
+or when it denies the group to an opponent who would otherwise
+complete it.
+
+Reply in EXACTLY this format on a single line:
+  REASON: <one short sentence>
+  ANSWER: BUY
+or
+  REASON: <one short sentence>
+  ANSWER: PASS
+Do not output anything else.
+
+----------------------------------------------------------------
+[ user ]    (few-shot example 1: clear BUY — cheap, no opposition, plenty of cash)
+----------------------------------------------------------------
+Cash $1200. Decision: buy 'B1 Oriental Avenue' (group Lightblue) for
+$100, base rent $6. You own 0 properties total, 0 in this group.
+Opponent owns 0 in this group, 2 properties total.
+
+----------------------------------------------------------------
+[ assistant ]
+----------------------------------------------------------------
+REASON: Cheap, plenty of cash, and no opponent ownership in this
+group leaves room for me to monopolise it.
+ANSWER: BUY
+
+----------------------------------------------------------------
+[ user ]    (few-shot example 2: clear PASS — low cash + opponent foothold)
+----------------------------------------------------------------
+Cash $90. Decision: buy 'D1 St. James Place' (group Orange) for
+$180, base rent $14. You own 3 properties total, 0 in this group.
+Opponent owns 1 in this group, 5 properties total.
+
+----------------------------------------------------------------
+[ assistant ]
+----------------------------------------------------------------
+REASON: Cash is too low to afford this and the opponent already
+holds Orange, so this group is unlikely to become my monopoly.
+ANSWER: PASS
+
+----------------------------------------------------------------
+[ user ]    (few-shot example 3: clear BUY — completing a monopoly)
+----------------------------------------------------------------
+Cash $700. Decision: buy 'C2 States Avenue' (group Pink) for $140,
+base rent $10. You own 6 properties total, 2 in this group.
+Opponent owns 0 in this group, 4 properties total.
+
+----------------------------------------------------------------
+[ assistant ]
+----------------------------------------------------------------
+REASON: Buying this completes my Pink monopoly, which is the single
+highest-value move available.
+ANSWER: BUY
+
+----------------------------------------------------------------
+[ user ]    (few-shot example 4: clear PASS — opponent dominates, liquidity hit)
+----------------------------------------------------------------
+Cash $500. Decision: buy 'G1 Pacific Avenue' (group Green) for $300,
+base rent $26. You own 8 properties total, 0 in this group.
+Opponent owns 2 in this group, 5 properties total.
+
+----------------------------------------------------------------
+[ assistant ]
+----------------------------------------------------------------
+REASON: Opponent already owns two-thirds of Green so I cannot
+monopolise it; spending $300 here hurts my liquidity.
+ANSWER: PASS
+
+----------------------------------------------------------------
+[ user ]    (runtime decision — template filled in per buy event)
+----------------------------------------------------------------
+Cash ${self.money}. Decision: buy '{prop.name}' (group {prop.group})
+for ${prop.cost_base}, base rent ${prop.rent_base}. You own
+{owned_count} properties total, {same_group_self} in this group of
+{group_size}. Opponent owns {opp_in_group} in this group,
+{opp_total} properties total.
+
+Concrete example a real query the LLM might see:
+
+  Cash $850. Decision: buy 'C1 Pink Lane' (group Pink) for $140,
+  base rent $10. You own 4 properties total, 0 in this group of 2.
+  Opponent owns 1 in this group, 3 properties total.
+
+----------------------------------------------------------------
+[ assistant ]    (model's response — example)
+----------------------------------------------------------------
+REASON: I have enough cash to buy this and I can afford to lose it
+if I need to.
+ANSWER: BUY
+
+
+================================================================
+Pre-filter before the LLM is even called
+================================================================
+
+LLMPlayer._should_buy applies three cheap rule-based checks before
+constructing the prompt. Anything that fails one of these returns
+PASS without an LLM call:
+
+  - if cost > current_cash:                 PASS  (can't afford)
+  - if cash - cost < settings.unspendable_cash:  PASS  (cash floor)
+  - if prop.group in settings.ignore_groups:     PASS  (player policy)
+
+This typically eliminates 60-80% of would-be LLM calls per game,
+keeping Phase A wall-clock manageable. The pre-filter never returns
+BUY — only PASS is short-circuited.
+
+
+================================================================
+Decision parsing
+================================================================
+
+The model's response is parsed by LLMPlayer._parse_decision:
+
+  1. Find the FIRST 'ANSWER: BUY' or 'ANSWER: PASS' (case-insensitive)
+     in the response. The earlier of the two wins.
+  2. If neither structured tag appears, fall back to the LAST
+     occurrence of 'BUY' or 'PASS' anywhere in the response.
+  3. If neither token appears, default to BUY (matches the optimistic
+     baseline RuleBasedPlayer behaviour).
+
+The first-occurrence rule on the structured tag is critical because
+small models (notably Qwen2.5-0.5B/1.5B at this prompt) often
+produce a clean answer and then hallucinate a fake new user turn
+afterwards containing the word 'buy' or 'pass'. The first-occurrence
+rule guarantees we read the model's actual decision, not the
+hallucinated continuation.
+
+
+================================================================
+Code pointers
+================================================================
+
+  System prompt:           agents.py LLMPlayer._SYSTEM_PROMPT
+  Few-shot examples:       agents.py LLMPlayer._FEW_SHOT
+  User-prompt template:    agents.py LLMPlayer._build_buy_prompt
+  Local model query:       agents.py LLMPlayer._query_local
+  OpenAI-compatible query: agents.py LLMPlayer._query_openai
+  Decision parser:         agents.py LLMPlayer._parse_decision
+  Phase A run script:      scripts/phase_a_validation.py

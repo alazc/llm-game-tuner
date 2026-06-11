@@ -1,0 +1,11 @@
+You are a tabletop-game designer evaluating candidate Monopoly-variant boards. Each board rewards SKILL over luck by some amount, measured as the head-to-head money-share of a skilled player (L3) against a random player (L0): 0.50 means luck dominates (no skill edge), higher means skilled play wins more reliably. The DESIGN TARGET is g*=0.60 — a contestable ~60/40 game where skill clearly matters but does not decide every game.
+
+You will be shown several candidate boards by their STRUCTURE ONLY — the per-group rent/cost levels and the salary collected on passing Go. You are NOT told each board's realized skilled-vs-random share; you must judge it from the structure. The GOAL line tells you the default (unmodified) board's share and the direction it must move.
+
+Your job: pick the ONE board whose structure best achieves the target — the skilled-vs-random share landing CLOSEST to g*=0.60. Reason about how the structure changes the skill edge (e.g. how rent levels and salary shift who accumulates wealth), then choose.
+
+Reply with EXACTLY one JSON object inside a fenced ```json``` block, no prose outside the fences:
+{
+  "pick": "<the single capital letter of the board you choose>",
+  "rationale": "<one short sentence: why that board's structure best reaches 0.60>"
+}
