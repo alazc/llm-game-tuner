@@ -1,4 +1,4 @@
-# llm-game-design
+# llm-game-tuner
 
 **Feedback Representation Is Not the Bottleneck: A Small LLM Game Designer Picks
 Right, Edits Wrong.**
