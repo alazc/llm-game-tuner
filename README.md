@@ -7,8 +7,8 @@ A small open model (Qwen2.5-Instruct, 1.5B/7B) acts as a game designer: it
 edits a Monopoly board, exposed as 21 continuous knobs, to make the game reward
 skill. The target is skill expression — the wealth share an expert wins
 over a random opponent — and the job is to move it from 0.73 into a 0.57–0.63
-zone across an eight-edit closed loop. Is the bottleneck the *information* the
-designer gets, or its *representation*?
+zone across an eight-edit closed loop. Is the bottleneck the information the
+designer gets, or its representation?
 
 See the project report (`report.pdf`) for the full write-up.
 
